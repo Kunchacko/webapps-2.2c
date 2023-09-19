@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr MOOSA'S CLINIC APPOINTMENT BOOKING</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #292b2c;
+            color: #fff;
+            font-family: Times New Roman, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+            color: #fff;
+        }
+
+        nav {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #333;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Dr MOOSA'S CLINIC APPOINTMENT BOOKING</h1>
+            <nav>
+                <router-link to="/">Patient Information</router-link>
+                <router-link to="/booking-date">Booking Date</router-link>
+                <router-link to="/requirements">Requirements</router-link>
+            </nav>
+        </header>
+        
+        <router-view></router-view>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.5.2/dist/vue-router.js"></script>
+    <script>
+        // Define components for different sections
+        const PatientInformation = {
+            template: `
+                <div class="content">
+                    <h1>Patient Information</h1>
+                    <form>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" placeholder="Enter your age" required>
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            `,
+        };
+
+        const BookingDate = {
+            template: `
+                <div class="content">
+                    <h1>Booking Date</h1>
+                    <form>
+                        <label for="bookingDate">Select Date:</label>
+                        <input type="date" id="bookingDate" required>
+
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            `,
+        };
+
+        const Requirements = {
+            template: `
+                <div class="content">
+                    <h1>Requirements</h1>
+                    <p>Here is the list of utilities to bring to the clinic:</p>
+                    <ul>
+                        <li>Mask</li>
+                        <li>Sanitizer</li>
+                        <li>Previous medical report (if visited earlier)</li>
+                    </ul>
+                </div>
+            `,
+        };
+
+        // Create Vue Router instance and configure routes
+        const router = new VueRouter({
+            routes: [
+                { path: '/', component: PatientInformation },
+                { path: '/booking-date', component: BookingDate },
+                { path: '/requirements', component: Requirements },
+            ],
+        });
+
+        const app = new Vue({
+            router,
+        }).$mount('#app');
+    </script>
+
+    <main>
+        <!-- You can add more content here -->
+    </main>
+    <footer>
+        <p>&copy; 2023 booking</p>
+    </footer>
+</body>
+</html>
